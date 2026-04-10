@@ -7,7 +7,7 @@ This scaffold is intended to hold the original experimentation workflow separate
 - exact-upstream benchmark-faithful preprocessing
 - supervised transformer baselines
 - grouped-validation search loops
-- contrastive GC-MS search loops
+- an initial contrastive GC-MS search loop
 - explicit artifact contracts for edge deployment
 
 ## Scope
@@ -42,3 +42,5 @@ Primary entrypoints:
 - `docs/findings.md` captures the benchmark and autoresearch results gathered so far.
 - `docs/publishing_notes.md` captures the legal and publication split strategy.
 - `openspec/` carries the current design/spec notes for the harness.
+- The strongest completed supervised run so far is the phase-2 exact-upstream search.
+- The contrastive path is included as an initial extension track, but it has only been lightly explored so far.

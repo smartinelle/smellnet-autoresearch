@@ -178,11 +178,51 @@ Interpretation:
 
 ## 8. What this does and does not show
 
+### 7.4 Initial contrastive search
+
+After phase 2, we also ran one short contrastive-learning search as a first extension track rather than a new benchmark anchor.
+
+Contrastive run settings:
+
+- Track: exact-upstream contrastive
+- Device: `mps`
+- Budget: `1h`
+- Validation: grouped, `1` held-out file per class
+- Objective: validation window-level `acc@1`
+- Test: touched once at the end
+
+Outcome:
+
+- Trials completed: `30`
+- Best validation config:
+  - `model_dim = 256`
+  - `num_heads = 8`
+  - `num_layers = 2`
+  - `dropout = 0.05`
+  - `gcms_dropout = 0.0`
+  - `lr = 0.0003`
+  - `temperature = 0.1`
+- Best validation metrics:
+  - Top-1: `49.30`
+  - Top-5: `83.30`
+- Final test metrics:
+  - Top-1: `50.40`
+  - Top-5: `85.26`
+
+Interpretation:
+
+- Under the short search budget used here, contrastive learning underperformed the best supervised exact-upstream run.
+- This does not rule out the contrastive path. The original paper-style contrastive runs appear to have trained substantially longer than the quick search budget used in this repo so far.
+- The current working benchmark anchor therefore remains the supervised phase-2 model.
+
+## 8. What this does and does not show
+
 What it shows:
 
 - The benchmark-faithful data path is working.
 - Grouped validation plus validation-locked search is viable.
 - Exact-upstream single-model transformer performance is reproducible and can be improved modestly with search.
+- A short-budget contrastive search is now implemented and reproducible, even though it is not yet competitive with the best supervised run.
 
 What it does not show:
 
